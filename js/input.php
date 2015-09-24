@@ -1,5 +1,5 @@
 <?php
-	$mysqli = new mysqli("localhost", "injury", "injury", "injury");
+	$mysqli = new mysqli("localhost", "", "", "");
 	//Object Oriented $mysqli = new mysqli("localhost", "name", "psw", "dbname");
 	/* check connection */
 	if (mysqli_connect_errno()) {
