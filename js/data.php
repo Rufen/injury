@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("localhost", "injury", "injury", "injury");
+$conn = new mysqli("localhost", "", "", "");
 
 $result = $conn->query("SELECT `Last Name`, `First Name`, `MI`, `Street name`, `City`, `State`, `Zip Code`, `Home Phone`, `Cell Phone`, `Email`, `Job Title`, `Department`, `Work Station`, `Supervisor`, `Dept Head`, `SS`, `DOB`, `Injury Date`, `Injury Time`, `Body Injury`, `Exact Location`, `Description`, `How Prevent`, `Witnesses`, `Reoccurring`, `Sought Medical`, `Doctor Name`, `Doctor Phone`, `Doctor Fax`, `Signature`, `Signature Date` FROM injury_report");
 
