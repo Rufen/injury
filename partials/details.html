@@ -1,0 +1,193 @@
+<section>
+  <div class="cf row" ng-model="injuries">
+    <div class="col-md-6">
+    <a href="#/details/{{prevItem}}" class="btn btn-left">&lt; Previous</a> | 
+    <a href="#/details/{{nextItem}}" class="btn btn-right">Next &gt;</a>
+    </div>
+    <div class="col-md-6">
+    <a href="#/summary">&laquo; Back to search</a>
+    </div>
+  </div>
+    <hr>
+      <h4>General Information</h4>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-sm-5">
+              <label for="injuryreport-lname">Last Name</label>
+              <input type="text" ng-model="lname" class="form-control" id="injuryreport-lname" placeholder="{{injuries[whichItem].lname}}">
+            </div>
+            <div class="col-sm-5">
+              <label for="injuryreport-fname">First Name</label>
+              <input type="text" ng-model="fname" class="form-control" id="injuryreport-fname" placeholder="{{injuries[whichItem].fname}}">
+            </div>
+            <div class="col-sm-2">
+              <label for="injuryreport-mi">MI</label>
+              <input type="text" ng-model="mi" class="form-control" id="injuryreport-mi" placeholder="{{injuries[whichItem].mi}}">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-sm-5">
+              <label for="injuryreport-street">Home Street Address</label>
+              <input type="text" ng-model="street" class="form-control" id="injuryreport-street" placeholder="{{injuries[whichItem].street}}">
+            </div>
+            <div class="col-sm-3">
+              <label for="injuryreport-city">City</label>
+              <input type="text" ng-model="city" class="form-control" id="injuryreport-city" placeholder="{{injuries[whichItem].city}}">
+            </div>
+            <div class="col-sm-2">
+              <label for="injuryreport-state">State</label>
+              <input type="text" ng-model="state" class="form-control" id="injuryreport-state" placeholder="{{injuries[whichItem].state}}">
+            </div>
+            <div class="col-sm-2">
+              <label for="injuryreport-zip">Zip</label>
+              <input type="text" ng-model="zip" class="form-control" id="injuryreport-zip" placeholder="{{injuries[whichItem].zip}}">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-hphone">Home Phone</label>
+          <input type="text" ng-model="hphone" class="form-control" id="injuryreport-hphone" placeholder="{{injuries[whichItem].hphone}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-cphone">Cell Phone</label>
+          <input type="text" ng-model="cphone" class="form-control" id="injuryreport-cphone" placeholder="{{injuries[whichItem].cphone}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-email">Email</label>
+         <input type="email" ng-model="email" class="form-control" id="injuryreport-email" placeholder="{{injuries[whichItem].email}}">
+        </div>
+      </div><!--Home phone, cell phone, email -->
+      <div class="row" style="text-align:left;">
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-jobtitle">Job Title</label>
+          <input type="text" ng-model="jobtitle" class="form-control" id="injuryreport-jobtitle" placeholder="{{injuries[whichItem].jobtitle}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-dept">Department</label>
+          <input type="text" ng-model="dept" class="form-control" id="injuryreport-dept" placeholder="{{injuries[whichItem].dept}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-worklocation">Work Location</label>
+          <input type="text" ng-model="worklocation" class="form-control" id="injuryreport-worklocation" placeholder="{{injuries[whichItem].worklocation}}">
+        </div>
+      </div><!--job title, department and work location -->
+      <div class="row" style="text-align:left;">
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-supervisor">Supervisor</label>
+          <input type="text" ng-model="supervisor" class="form-control" id="injuryreport-supervisor" placeholder="{{injuries[whichItem].supervisor}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-depthead">Dept. Head</label>
+          <input type="text" ng-model="depthead" class="form-control" id="injuryreport-depthead" placeholder="{{injuries[whichItem].depthead}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <div class="row">
+            <div class="col-md-5">
+              <label for="injuryreport-ss">SS#: XXX-XX-</label>
+              <input type="text" ng-model="ss" class="form-control" id="injuryreport-ss" placeholder="{{injuries[whichItem].ss}}">
+            </div>
+            <div class="col-md-7">
+              <label for="injuryreport-dob">DOB</label>                        
+                <input type="text" ng-model="dob" class="form-control" id="injuryreport-dob" placeholder="{{injuries[whichItem].dob}}">
+            </div>
+          </div><!--ss# and dob -->
+        </div>
+      </div><!--supervisor, dept head, ss, dob -->
+    <hr>
+    <h4>Description of Accident</h4>
+      <div class="row" style="text-align:left;">
+            <div class="col-sm-3">
+              <label for="injuryreport-dinjured">Date of Accident</label>              
+              <input type="text" ng-model="dinjured" class="form-control" id="injuryreport-ss" placeholder="{{injuries[whichItem].dinjured}}">              
+            </div>
+            <div class="col-sm-3">
+              <label for="injuryreport-tinjured">Time of Accident</label>              
+              <input type="text" ng-model="tinjured" class="form-control" id="injuryreport-ss" placeholder="{{injuries[whichItem].tinjured}}">              
+            </div
+            <div class="col-sm-6">
+            </div>
+      </div> <!--injury date and time-->
+      <div class="row" style="text-align:left;">
+            <div class="col-sm-12">
+              <label for="injuryreport-partinjured">Body Part(s) Injured:</label>
+              <input type="text" ng-model="partinjured" class="form-control" id="injuryreport-partinjured" placeholder="{{injuries[whichItem].partinjured}}">
+            </div>
+      </div>      
+      <div class="row" style="text-align:left;">
+            <div class="col-sm-12">
+              <label for="injuryreport-exactlocation">Exact Location:</label>
+              <input type="text" ng-model="exactlocation" class="form-control" id="injuryreport-exactlocation" placeholder="{{injuries[whichItem].exactlocation}}">
+            </div>
+      </div>  
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-injurydescription">Description of Accident: How did this happen? Why did it happen?</label><br />
+          <input type="text" ng-model="injurydescription" class="form-control" id="injuryreport-injurydescription" placeholder="{{injuries[whichItem].exactlocation}}">
+          </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-howtoprevent">How can we prevent this from happening again?</label><br />
+          <input type="text" ng-model="howtoprevent" class="form-control" id="injuryreport-howtoprevent" placeholder="{{injuries[whichItem].howtoprevent}}">
+          </div>
+      </div>
+      <div class="row" style="text-align:left;">
+            <div class="col-sm-12">
+              <label for="injuryreport-witnesses">Witnesses</label>
+              <input type="text" ng-model="witnesses" class="form-control" id="injuryreport-witnesses" placeholder="{{injuries[whichItem].witnesses}}">
+            </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-reoccurring">Is this a reoccurring injury?&nbsp;&nbsp;</label>
+          <input type="text" ng-model="reoccurring" class="form-control" id="injuryreport-reoccurring" placeholder="{{injuries[whichItem].reoccurring}}">                    
+        </div>
+      </div> 
+      <hr>
+      <div><!--about seeking doctor and info -->   
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-medicalattention">Have you sought medical attention for this injury?&nbsp;&nbsp;</label>
+          <input type="text" ng-model="medicalattention" class="form-control" id="injuryreport-medicalattention" placeholder="{{injuries[whichItem].medicalattention}}">                  
+        </div>
+      </div>
+      <div class="well" ng-hide="soughtmed"><!--info about doctor-->      
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-6">
+          <label for="injuryreport-doctorname">If Yes, what is the dcotor's name?</label>
+          <input type="text" ng-model="doctorname" class="form-control" id="injuryreport-doctorname" placeholder="{{injuries[whichItem].doctorname}}">    
+        </div>
+        <div class="col-sm-3">
+          <label for="injuryreport-doctorphone">Doctor's phone number</label>
+          <input type="text" ng-model="doctorphone" class="form-control" id="injuryreport-doctorphone" placeholder="{{injuries[whichItem].doctorphone}}">    
+        </div>
+        <div class="col-sm-3">
+          <label for="injuryreport-doctorfax">Doctor's fax number</label>
+          <input type="text" ng-model="doctorfax" class="form-control" id="injuryreport-doctorfax" placeholder="{{injuries[whichItem].doctorfax}}">    
+        </div>
+      </div>
+      <p style="border: 1px solid #ccc;border-radius: 5px;margin-top:8px;padding:10px;color:#007AA3;">Note: All medical notes must be submitted to Human Resources after each visit should you wish the bills to be paid for under worker's compensation.
+      </p>
+      </div><!--end of info about doctor-->
+      </div><!--sought medical and info about doctor section -->
+      <div class="panel panel-default"><div class="panel-body" style="color:#007AA3;">Note: Any false or misleading statements representation or submissions affecting a claim for workers's compensation are punishable as a felony and/or fine and criminal restitution pursuant to M.G.L. c. 152 Â§ 14. Signed under pains and penalties of injury.</div></div>  
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-6">
+          <label for="injuryreport-empsigninature">Employee Signature: </label>
+          <input type="text" ng-model="empsigninature" class="form-control" id="injuryreport-empsigninature" placeholder="{{injuries[whichItem].empsigninature}}">    
+        </div>
+        <div class="col-sm-6 input-group">
+          <label for="injuryreport-dt">Date:</label>
+          <div class="col-sm-6 input-group">          
+            <input type="text" ng-model="dt" class="form-control"  id="injuryreport-dt" placeholder="{{injuries[whichItem].dt}}">
+          </div><!--calendar--> 
+        </div><!--date label and calendar-->
+      </div><!--signature and date-->
+  <hr>
+  
+</section>

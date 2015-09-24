@@ -1,0 +1,269 @@
+<h2>Supervisor's Accident Investigation and Folow Up<br />
+<span class="h2s">- using employee's email to retrive injury info.</span></h2>
+<div class="row" style="margin-left:8px;"><label>Enter your email:</label>
+<input ng-model="query.email" placeholder="Search" autofocus>
+</div>
+<hr>
+    <form name="injuryForm" ng-controller="SupervisorController">
+      <h4>Injured Employee's Information</h4>
+      <div ng-repeat="item in injuries |filter:query as results" ng-if="results.length==1"><!--general information starts-->
+      <div class="row">
+        <div class="col-md-6">
+              <label for="injuryreport-lname">Employee's Name</label>
+              <input type="text" ng-model="injuryreport.lname" class="form-control" id="injuryreport-lname" placeholder="{{item.lname}}, {{item.fname}}" required>
+        </div>
+        <div class="col-md-6">
+         <label for="injuryreport-email">Email</label>
+         <input type="email" ng-model="injuryreport.email" class="form-control" id="injuryreport-email" placeholder="{{item.email}}">
+        </div>
+      </div><!--first row ends-->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="injuryreport-jobtitle">Job Title</label>
+              <input type="text" ng-model="injuryreport.jobtitle" class="form-control" id="injuryreport-jobtitle" placeholder="{{item.jobtitle}}">
+            </div>
+            <div class="col-md-6">
+              <label for="injuryreport-dept">Department</label>
+              <input type="text" ng-model="injuryreport.dept" class="form-control" id="injuryreport-dept" placeholder="{{item.dept}}">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="injuryreport-dinjured">Date of Injury (DOI)</label>
+              <input type="text" ng-model="injuryreport.dinjured" class="form-control" id="injuryreport-dinjured" placeholder="{{item.dinjured}}">
+            </div>
+            <div class="col-md-6">
+              <label for="injuryreport-tinjured">Time of Injury</label>
+              <input type="text" ng-model="injuryreport.tinjured" class="form-control" id="injuryreport-tinjured" placeholder="{{item.tinjured}}">
+            </div>
+          </div>
+        </div>
+      </div><!--job title, department and work location -->
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-exactlocation">Location of Incident</label>
+          <input type="text" ng-model="injuryreport.exactlocation" class="form-control" id="injuryreport-exactlocation" placeholder="{{item.exactlocation}}">
+          </div>
+      </div>
+    </div>
+    <hr>
+    <h4>Accident Information</h4>   
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12"> 
+            <label for="injuryreport-dt_sup">Date that you as his supervisor/manager aware of incident?</label>
+        </div><!--date label and calendar-->
+      
+      </div><!--signature and date-->
+      <div class="row" style="text-align:left;"> 
+          <div class="col-md-4">           
+              <div class="input-group"><input type="text" ng-model="dt_sup" class="form-control" datepicker-popup="{{format}}" is-open="opened_dt" min-date="2005-06-22" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open_dt($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span> 
+              </div>
+          </div>
+          <div class="col-md-8"></div>
+      </div>
+      <div class="row" style="margin-top:5px;text-align:left;border-top:1px dotted #ccc;border-bottom:1px dotted #ccc;padding-bottom:5px;"> 
+          <div class="col-md-6">
+          <label for="injuryreport-dt_sup">When did this employee <u>START</u> his/her day on the DOI?</label><br />
+            <div class="col-sm-2">
+              <label>Hours:</label>
+              <select class="form-control" ng-model="timepart.hstep" ng-options="opt for opt in options.hstep"></select>
+            </div>
+            <div class="col-sm-2">
+               <label> Minutes:</label>
+              <select class="form-control" ng-model="timepart.mstep" ng-options="opt for opt in options.mstep"></select>
+            </div>
+            <div class="col-sm-3">
+               <label>AM/PM</label>
+             <select class="form-control" ng-model="timepart.ampm" ng-options="opt for opt in options.ampm"></select>        
+            </div>
+            <div class="col-sm-5"></div>
+          </div>
+          <div class="col-md-6">
+            <label for="injuryreport-dt_sup">When did this employee <u>END</u> his/her day on the DOI?</label><br />
+            <div class="col-sm-2">
+              <label>Hours:</label>
+              <select class="form-control" ng-model="timepart.hstep" ng-options="opt for opt in options.hstep"></select>
+            </div>
+            <div class="col-sm-2">
+               <label> Minutes:</label>
+              <select class="form-control" ng-model="timepart.mstep" ng-options="opt for opt in options.mstep"></select>
+            </div>
+            <div class="col-sm-3">
+               <label>AM/PM</label>
+             <select class="form-control" ng-model="timepart.ampm" ng-options="opt for opt in options.ampm"></select>        
+            </div>
+            <div class="col-sm-5"></div>
+          </div>
+      </div>
+      <div class="row" style="text-align:left;border-bottom:1px dotted #ccc;padding-bottom:5px;"> 
+          <div class="col-md-4">
+          <label for="injuryreport-dt_sup">What are <u>NORMAL WORK DAYS</u>?</label><br />
+            <div class="col-sm-6">
+              <label>From:</label>
+              <select class="form-control" ng-model="injuryreport.weekdayfrom" ng-options="opt for opt in options.weekday"></select>
+            </div>
+            <div class="col-sm-6">
+              <label>to:</label>
+              <select class="form-control" ng-model="injuryreport.weekdayto" ng-options="opt for opt in options.weekday"></select>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <label for="injuryreport-dt_sup">What are <u>NORMAL WORK HOURS</u>?</label><br />
+            <div class="col-sm-2">
+              <label>From: Hour:</label>
+              <select class="form-control" ng-model="timepart.hstep" ng-options="opt for opt in options.hstep"></select>
+            </div>
+            <div class="col-sm-2">
+               <label> Minute:</label>
+              <select class="form-control" ng-model="timepart.mstep" ng-options="opt for opt in options.mstep"></select>
+            </div>
+            <div class="col-sm-2">
+               <label>AM/PM</label>
+             <select class="form-control" ng-model="timepart.ampm" ng-options="opt for opt in options.ampm"></select>        
+            </div>
+            <div class="col-sm-2">
+              <label>to: Hour:</label>
+              <select class="form-control" ng-model="timepart.hstep" ng-options="opt for opt in options.hstep"></select>
+            </div>
+            <div class="col-sm-2">
+               <label> Minute:</label>
+              <select class="form-control" ng-model="timepart.mstep" ng-options="opt for opt in options.mstep"></select>
+            </div>
+            <div class="col-sm-2">
+               <label>AM/PM</label>
+             <select class="form-control" ng-model="timepart.ampm" ng-options="opt for opt in options.ampm"></select>        
+            </div>
+          </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-medicalattention">Did he/she leave early? Lose any time from work on the DOI?&nbsp;&nbsp;</label>
+          <label>Yes</label>
+            <input type="radio" ng-click="medyesno('y')" ng-model="injuryreport.medicalattention" value="Yes">          
+          <label>No</label> 
+            <input type="radio" ng-click="medyesno('n')" ng-model="injuryreport.medicalattention" value="No">                   
+        </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-exactlocation"><u>WHAT</u> did the employee say or report as to how he/she was injured?</label>
+          <input type="text" ng-model="injuryreport.exactlocation" class="form-control" id="injuryreport-exactlocation" placeholder="">
+          </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-exactlocation"><u>HOW</u> was he/she injured?</label>
+          <input type="text" ng-model="injuryreport.exactlocation" class="form-control" id="injuryreport-exactlocation" placeholder="">
+          </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-exactlocation"><u>WHY</u> was he/she injured?</label>
+          <input type="text" ng-model="injuryreport.exactlocation" class="form-control" id="injuryreport-exactlocation" placeholder="">
+          </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-exactlocation"><u>DESCRIBE</u> any unsafe acts and/or conditions?</label>
+          <input type="text" ng-model="injuryreport.exactlocation" class="form-control" id="injuryreport-exactlocation" placeholder="">
+          </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-exactlocation">How can we <u>PREVENT</u> this injury/accident from happening again?</label>
+          <input type="text" ng-model="injuryreport.exactlocation" class="form-control" id="injuryreport-exactlocation" placeholder="">
+          </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-exactlocation">What is the <u>FOLLOW</u> up training/education plan for this employee?</label>
+          <input type="text" ng-model="injuryreport.exactlocation" class="form-control" id="injuryreport-exactlocation" placeholder="">
+          </div>
+      </div>
+      <div><!--about seeking doctor and info -->   
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-medicalattention">Were there any <u>WITNESSES</u> to this incident?&nbsp;&nbsp;</label>
+          <label>Yes</label>
+            <input type="radio" ng-click="medyesno('y')" ng-model="injuryreport.medicalattention" value="Yes">          
+          <label>No</label> 
+            <input type="radio" ng-click="medyesno('n')" ng-model="injuryreport.medicalattention" value="No">                   
+        </div>
+      </div>
+      <div class="well" ng-hide="soughtmed"><!--info about witnesses-->      
+      <div class="row" style="text-align:left;">
+      <label for="injuryreport-doctorname">If Yes, please list names and contact information:</label><br />
+        <div class="col-sm-3">
+          <label for="injuryreport-doctorname">Name:</label>
+          <input type="text" ng-model="injuryreport.doctorname" class="form-control" id="injuryreport-doctorname">    
+        </div>
+        <div class="col-sm-3">
+          <label for="injuryreport-doctorphone">Phone:</label>
+          <input type="text" ng-model="injuryreport.doctorphone" class="form-control" id="injuryreport-doctorphone">    
+        </div>
+        <div class="col-sm-3">
+          <label for="injuryreport-doctorfax">Name:</label>
+          <input type="text" ng-model="injuryreport.doctorfax" class="form-control" id="injuryreport-doctorfax">    
+        </div>
+        <div class="col-sm-3">
+          <label for="injuryreport-doctorfax">Phone:</label>
+          <input type="text" ng-model="injuryreport.doctorfax" class="form-control" id="injuryreport-doctorfax">    
+        </div>
+      </div>
+      </div><!--end of info about witnesses-->
+      </div><!--end of any witnesses section -->
+      <div><!--about spoken with witnesses -->   
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-medicalattention">Have you spoken with these listed witnesses?&nbsp;&nbsp;</label>
+          <label>Yes</label>
+            <input type="radio" ng-click="medyesno('y')" ng-model="injuryreport.medicalattention" value="Yes">          
+          <label>No</label> 
+            <input type="radio" ng-click="medyesno('n')" ng-model="injuryreport.medicalattention" value="No">                   
+        </div>
+      </div>
+      <div class="well" ng-hide="soughtmed"><!--info about witnesses-->      
+      <div class="row" style="text-align:left;">      
+        <div class="col-md-12">
+          <label for="injuryreport-doctorname">If Yes, please describe:</label>
+          <input type="text" ng-model="injuryreport.doctorname" class="form-control" id="injuryreport-doctorname">    
+        </div>
+      </div>
+      </div><!--end of info about witnesses-->
+      </div><!--sought medical and info about doctor section -->
+      <div class="panel panel-default"><div class="panel-body" style="color:#007AA3;">If there are any current personnel issues or conccerns re this incident, please inform the workers' compensation manager ASAP. Please be sure to reprot any call outs, sick days or issues regarding this injury going forward to the workers' compensation manager.</div></div>  
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-5">
+          <label for="injuryreport-empsigninature">Supervisor Name: </label>
+          <input type="text" ng-model="injuryreport.empsigninature" class="form-control" id="injuryreport-empsigninature">    
+        </div>
+        <div class="col-sm-3">
+          <label for="injuryreport-empsigninature">Supervisor Signature: </label>
+          <input type="text" ng-model="injuryreport.empsigninature" class="form-control" id="injuryreport-empsigninature">    
+        </div>
+        <div class="col-sm-4 input-group">
+          <label for="injuryreport-dt">Date:</label>
+          <div class="col-sm-6 input-group">          
+            <input type="text" ng-model="dt" class="form-control" datepicker-popup="{{format}}" is-open="opened_dt" min-date="2005-06-22" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open_dt($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span> 
+          </div><!--calendar--> 
+        </div><!--date label and calendar-->
+      </div><!--signature and date-->
+      <div class="row" style="text-align:left;margin-top:5px;">
+      <div class="col-sm-6">           
+      <input type="submit" value="Submit" ng-disabled="myForm.fname.$dirty && myForm.fname.$invalid || myForm.lname.$dirty && myForm.lname.$invalid || myForm.dept.$dirty && myForm.dept.$invalid || myForm.email.$dirty && myForm.email.$invalid" ng-click="insertdata()" />
+      </div>
+      </div>
+   </form>
+<script>
+ $scope.getindex=function(){if ($index==='0'){console.log("$index is " .$index;)}}; 
+</script>

@@ -1,0 +1,132 @@
+<style>
+  .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+</style>
+<section>
+<h2>Supervisor's Accident Investigation and Follow Up</h2>
+<br />
+        <form name="injuryForm" ng-controller="SupervisorController" novalidate>
+       
+        <p>First Name:<br>
+        <input type="text" ng-model="injuryreport.fname" required>
+        <span style="color:red" ng-show="myForm.fname.$dirty && myForm.fname.$invalid">
+        <span ng-show="myForm.fname.$error.required">First name is required.</span>
+        </span>
+        </p>
+        <p>Last Name:<br>
+        <input type="text" name="lname" ng-model="injuryreport.lname" required>
+        <span style="color:red" ng-show="myForm.lname.$dirty && myForm.lname.$invalid">
+        <span ng-show="myForm.lname.$error.required">Last name is required.</span>
+        </span>        
+        </p>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-sm-6">
+              <label for="exampleInputst">Home Street Address</label>
+              <input type="text" ng-model="injuryreport.street" class="form-control" id="exampleInputst" placeholder="1000 Commonwealth Ave.">
+            </div>
+            <div class="col-sm-3">
+              <label for="exampleInputstate">State</label>
+              <input type="text" ng-model="injuryreport.state" class="form-control" id="exampleInputstate" placeholder="MA">
+            </div>
+            <div class="col-sm-3">
+              <label for="exampleInputzip">Zip</label>
+              <input type="text" ng-model="injuryreport.zip" class="form-control" id="exampleInputzip" placeholder="02459">
+            </div>
+          </div>
+        </div>
+        <p>Home Phone:<br>
+        <input type="text" ng-model="injuryreport.hphone" placeholder="000-000-0000">
+        <span style="color:red" ng-show="myForm.hphone.$dirty && myForm.hphone.$invalid">
+        <span ng-show="myForm.hphone.$error.required">First name is required.</span>
+        </span>
+        </p>
+        <p>Cell Phone:<br>
+        <input type="text" ng-model="injuryreport.cphone" placeholder="000-000-0000">
+        <span style="color:red" ng-show="myForm.cphone.$dirty && myForm.cphone.$invalid">
+        <span ng-show="myForm.cphone.$error.required">First name is required.</span>
+        </span>
+        </p>             
+    <!--<div class="form-group">
+              <label for="exampleInputDate">Home Phone</label>
+              <input type="text" name="txt1" class="form-control" 
+                ng-model="injuryreport.hphone" 
+                ng-required="models.makeRequired" 
+                ui-mask="999 999 9999"
+                placeholder="000-000-0000" >
+              
+       </div>
+        <div class="form-group">
+              <label for="exampleInputDate">Cell Phone</label>
+              <input type="text" name="txt1" class="form-control" 
+                ng-model="injuryreport.cphone" 
+                ng-required="models.makeRequired" 
+                ui-mask="999-999-9999"
+                placeholder="000-000-0000" >
+              
+       </div>-->
+
+        <p>Department:<br>
+        <input type="text" name="dept" ng-model="injuryreport.dept" required>
+        <span style="color:red" ng-show="myForm.dept.$dirty && myForm.dept.$invalid">
+        <span ng-show="myForm.dept.$error.required">Department is required.</span>
+        </span>
+        </p>
+        <p>Email:<br>
+            <input type="email" name="email" ng-model="injuryreport.email" required>
+            <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+            <span ng-show="myForm.email.$error.required">Email is required.</span>
+            <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+            </span>
+        </p>  
+
+        <!--Date and time picker starts -->
+        <p class="input-group">Injury Date:
+            <div class="col-xs-3 input-group">
+              <input type="text" ng-model="it" class="form-control" datepicker-popup="{{format}}" is-open="opened_it" min-date="1945-06-22" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open_it($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>              
+            </div>
+            <div class="col-xs-1" >
+                Hours:
+              <select class="form-control" ng-model="timepart.hstep" ng-options="opt for opt in options.hstep"></select>
+              
+            </div>
+            <div class="col-xs-1">
+                Minutes:
+              <select class="form-control" ng-model="timepart.mstep" ng-options="opt for opt in options.mstep"></select>
+            </div>
+            <div class="col-xs-1">
+               <label>AM/PM</label>
+             <select class="form-control" ng-model="timepart.ampm" ng-options="opt for opt in options.ampm"></select>        
+            </div>
+        </p>
+        <div class="field">
+          <label>Description of Accident:</label>
+          <textarea class="text textarea"  name="message" ng-model="injury.description" required></textarea>
+        </div>
+         <p class="input-group">Signature Date:
+            <div class="col-xs-3 input-group">
+              <input type="text" ng-model="dt" class="form-control" datepicker-popup="{{format}}" is-open="opened_dt" min-date="1945-06-22" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open_dt($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>              
+            </div>
+</p>
+    <pre>Selected hour is: <em>{{concate()}}</em></pre><pre>Selected minute is: <em>{{mstep}}</em></pre><pre>Selected AM/PM is: <em>{{ampm}}</em></pre><pre>Injury date is: <em>{{it | date:'fullDate' }}</em></pre><pre>Signature date is: <em>{{dt | date:'fullDate' }}</em></pre>
+        <!--end of Date and time picker --> 
+        <p>                
+        <input type="submit" value="Submit" ng-disabled="myForm.fname.$dirty && myForm.fname.$invalid || myForm.lname.$dirty && myForm.lname.$invalid || myForm.dept.$dirty && myForm.dept.$invalid || myForm.email.$dirty && myForm.email.$invalid" ng-click="insertdata()" />
+        </p>
+ </form>
+</section>
+

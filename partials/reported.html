@@ -1,0 +1,1107 @@
+<ul class="nav nav-tabs">
+<li><a href="#/injury" class="btn btn-success"><span class="glyphicon glyphicon-user"></span>&nbsp;Employee (1st time to report injury)</a></li>
+<li class="active"><a href="#/reported" class="btn btn-success" style="margin-left:5px;"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;Employee (previously reported injury)</a></li>
+</ul>
+<h2>Employee Notice of Injury  <span class="h2s">- using email to retrive your profile</span></h2>
+<div class="row" style="margin-left:8px;"><label>Enter your email:</label>
+<input ng-model="query.email" placeholder="Search" autofocus>
+</div>
+<hr>
+    <form name="injuryForm" ng-controller="InjuryReportedController">
+      <h4>General Information</h4>
+      <div ng-repeat="injuryreport in injuries |filter:query as results" ng-if="results.length==1" class="animate-if" ><!--general information starts-->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-sm-5">
+              <label for="injuryreport-lname">Last Name: id{{injuries.indexOf(item)}}:{{item.lname}}:{{injuries[injuries.indexOf(item)].lname}}:{{injuryreport.lname}}</label>
+              <input type="text" ng-model="injuryreport.lname" class="form-control" id="injuryreport-lname" placeholder="{{injuryreport.lname}}" required>
+            </div>
+            <div class="col-sm-5">
+              <label for="injuryreport-fname">First Name</label>
+              <input type="text" ng-change="getOne()" ng-model="injuryreport.fname" class="form-control" id="injuryreport-fname" placeholder="{{injuryreport.fname}}" required>
+            </div>
+            <div class="col-sm-2">
+              <label for="injuryreport-mi">MI</label>
+              <input type="text" ng-change="getOne()" ng-model="injuryreport.mi" class="form-control" id="injuryreport-mi" placeholder="{{injuryreport.mi}}">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-sm-5">
+              <label for="injuryreport-street">Home Street Address</label>
+              <input type="text" ng-model="injuryreport.street" class="form-control" id="injuryreport-street" placeholder="{{injuryreport.street}}">
+            </div>
+            <div class="col-sm-3">
+              <label for="injuryreport-city">City</label>
+              <input type="text" ng-model="injuryreport.city" class="form-control" id="injuryreport-city" placeholder="{{injuryreport.city}}">
+            </div>
+            <div class="col-sm-2">
+              <label for="injuryreport-state">State</label>
+              <input type="text" ng-model="injuryreport.state" class="form-control" id="injuryreport-state" placeholder="{{injuryreport.state}}">
+            </div>
+            <div class="col-sm-2">
+              <label for="injuryreport-zip">Zip</label>
+              <input type="text" ng-model="injuryreport.zip" class="form-control" id="injuryreport-zip" placeholder="{{injuryreport.zip}}">
+            </div>
+          </div>
+        </div>
+      </div><!--first row ends-->
+      <div class="row" style="text-align:left;">
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-hphone">Home Phone</label>
+          <input type="text" ng-model="injuryreport.hphone" class="form-control" id="injuryreport-hphone" placeholder="{{injuryreport.hphone}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-cphone">Cell Phone</label>
+          <input type="text" ng-model="injuryreport.cphone" class="form-control" id="injuryreport-cphone" placeholder="{{injuryreport.cphone}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-email">Email</label>
+         <input type="email" ng-model="injuryreport.email" class="form-control" id="injuryreport-email" placeholder="{{injuryreport.email}}">
+        </div>
+      </div><!--Home phone, cell phone, email -->
+      <div class="row" style="text-align:left;">
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-jobtitle">Job Title</label>
+          <input type="text" ng-model="injuryreport.jobtitle" class="form-control" id="injuryreport-jobtitle" placeholder="{{injuryreport.jobtitle}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-dept">Department</label>
+          <input type="text" ng-model="injuryreport.dept" class="form-control" id="injuryreport-dept" placeholder="{{injuryreport.dept}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-worklocation">Work Location</label>
+          <input type="text" ng-model="injuryreport.worklocation" class="form-control" id="injuryreport-worklocation" placeholder="{{injuryreport.worklocation}}">
+        </div>
+      </div><!--job title, department and work location -->
+      <div class="row" style="text-align:left;">
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-supervisor">Supervisor</label>
+          <input type="text" ng-model="injuryreport.supervisor" class="form-control" id="injuryreport-supervisor" placeholder="{{injuryreport.supervisor}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-depthead">Dept. Head</label>
+          <input type="text" ng-model="injuryreport.depthead" class="form-control" id="injuryreport-depthead" placeholder="{{injuryreport.depthead}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <div class="row">
+            <div class="col-md-5">
+              <label for="injuryreport-ss">SS#: XXX-XX-</label>
+              <input type="text" ng-model="injuryreport.ss" class="form-control" id="injuryreport-ss" placeholder="{{injuryreport.ss}}">
+            </div>
+            <div class="col-md-7">
+              <label for="injuryreport-dob">DOB</label>
+              <input type="text" ng-model="injuryreport.dob" class="form-control" id="injuryreport-dob" placeholder="{{injuryreport.dob}}"><!--calendar--> 
+            </div>
+          </div><!--ss# and dob -->
+        </div>
+      </div><!--row of supervisor, dept head, ss, dob -->
+      </div><!-- general information section ends-->
+    <hr>
+    <h4>Description of Accident</h4>
+      <div class="row">
+          <label for="injuryreport-id">userid</label>
+          <input type="text" ng-model="injuryreport.id" class="form-control" id="injuryreport-id" placeholder="{{injuryreport.id}}">
+      </div>
+      <div class="row" style="text-align:left;">
+            <div class="col-sm-3">
+              <label for="injuryreport-dinjured">Date of Accident</label>
+              <div class="col-sm-12 input-group">
+              <input type="text" ng-model="it" class="form-control" datepicker-popup="{{format}}" is-open="opened_it" min-date="2005-06-22" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open_it($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+              </div> 
+            </div>
+            <div class="col-sm-2">
+              <label>Hours:</label>
+              <select class="form-control" ng-model="timepart.hstep" ng-options="opt for opt in options.hstep"></select>
+              
+            </div>
+            <div class="col-sm-2">
+               <label> Minutes:</label>
+              <select class="form-control" ng-model="timepart.mstep" ng-options="opt for opt in options.mstep"></select>
+            </div>
+            <div class="col-sm-2">
+               <label>AM/PM</label>
+             <select class="form-control" ng-model="timepart.ampm" ng-options="opt for opt in options.ampm"></select>        
+            </div>
+            <div class="col-sm-3">
+            </div>
+      </div> <!--injury date and time-->
+      <div class="row" style="text-align:left;">            
+            <div class="col-sm-12">
+              <label for="injuryreport-partinjured">Body Part(s) Injured:</label>
+                <label class="injurytypes">-- <span ng-click="toggleInfo()">Filing instructions</span> --</label>
+                <div>
+                  <ol ng-hide="groupinfo">
+                    <li>WHEN TO FILE: File this form within 7 calendar days, not including Sundays and legal holidays, of receipt of notice of any injury alleged to have arisen out of and in the course of employment, which totally or partially incapacitates an employee for a period of 5 or more calendar days from earning wages.  This form is not an admission of liability, but must be filed even though the Employer may believe that the Employee is not injured, or that the employee is not entitled to benefits under M.G.L. Chapter 152.</li>
+                    <li>WHERE TO FILE: This form should be mailed to the Department of Industrial Accidents at the address shown on the front of the form.  Copies must also be provided the Employee and to the Employer's Workers' Compensation insurer.</li>
+                    <li>PENALTIES: Failure to report injuries on this form may result in a fine of $100.00 in accordance with M.G.L. Chapter 152, Section 6.</li>
+                    <li>EMPLOYER'S NAME & SIGNATURE IN BOXES 37 & 39: This form must filed by the employer or authorized agent/representative of the employer.</li>
+                  </ol>
+                </div>
+                <div class="injurytypes">
+                  <label><span ng-click="toggleGroup()">Step 1. Industry Codes</span></label><label><span ng-click="toggleGroup2()">Step 2. Nature of Injury or Illness Codes</span></label><label><span ng-click="toggleGroup3()">Step 3. body Part Affected Codes</span></label>
+                </div>
+                <div class="table-responsive" ng-hide="group"><!--group 1-->
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td class="col-sm-6">
+                        <label><span class="group_underline">Agriculture Forestry and Fishing:</span></label><br />
+                        <label>01 Agriculture Production -Crops:
+                          <input type="checkbox" ng-model="checkboxModel.value1"
+                          ng-true-value="'01 Agriculture Production -Crops, '" ng-false-value="''">
+                        </label>
+                        <label>02 Agriculture Production-Liverstock:
+                          <input type="checkbox" ng-model="checkboxModel.value2"
+                                 ng-true-value="'02 Agriculture Production-Liverstock, '" ng-false-value="''">
+                         </label>
+                        <label>07 Agricultural Services:
+                          <input type="checkbox" ng-model="checkboxModel.value07"
+                          ng-true-value="'07 Agricultural Services, '" ng-false-value="''">
+                        </label>
+                        <label>08 Forestry:
+                          <input type="checkbox" ng-model="checkboxModel.value08"
+                                 ng-true-value="'08 Forestry, '" ng-false-value="''">
+                         </label>
+                        <label>09 Fishing, Hunting and Trapping:
+                          <input type="checkbox" ng-model="checkboxModel.value09"
+                                 ng-true-value="'09 Fishing, Hunting and Trapping, '" ng-false-value="''">
+                         </label>                         
+                        <hr style="margin:0;">
+                       <label><span class="group_underline">Mining:</span></label><br />
+                        <label>10 Metal Mining:
+                          <input type="checkbox" ng-model="checkboxModel.value10"
+                          ng-true-value="'10 Metal Mining, '" ng-false-value="''">
+                        </label>
+                        <label>12 Coal Mining:
+                          <input type="checkbox" ng-model="checkboxModel.value12"
+                                 ng-true-value="'12 Coal Mining, '" ng-false-value="''">
+                         </label>
+                        <label>13 Oil and Natural Gas:
+                          <input type="checkbox" ng-model="checkboxModel.value13"
+                          ng-true-value="'13 Oil and Natural Gas, '" ng-false-value="''">
+                        </label>
+                        <label>14 Nonmetallic Minerals, Except Fuels:
+                          <input type="checkbox" ng-model="checkboxModel.value14"
+                                 ng-true-value="'14 Nonmetallic Minerals, Except Fuels, '" ng-false-value="''">
+                         </label>
+                         <hr style="margin:0;">                       
+                        <label><span class="group_underline">Construction:</span></label><br />
+                        <label>15 General Building Contractor:
+                          <input type="checkbox" ng-model="checkboxModel.value15"
+                          ng-true-value="'15 General Building Contractor, '" ng-false-value="''">
+                        </label>
+                        <label>16 Heavy Consturction,  Ex. Building:
+                          <input type="checkbox" ng-model="checkboxModel.value16"
+                                 ng-true-value="'16 Heavy Consturction,  Ex. Building, '" ng-false-value="''">
+                         </label>
+                        <label>17 Special Trade Constractors:
+                          <input type="checkbox" ng-model="checkboxModel.value17"
+                          ng-true-value="'17 Special Trade Constractors, '" ng-false-value="''">
+                        </label>
+                        <hr style="margin:0;">
+                        <label><span class="group_underline">Manfactring:</span></label><br />
+                        <label>20 Food and Kindred Products:
+                          <input type="checkbox" ng-model="checkboxModel.value20"
+                          ng-true-value="'20 Food and Kindred Products, '" ng-false-value="''">
+                        </label>
+                        <label>21 Totacco Products:
+                          <input type="checkbox" ng-model="checkboxModel.value21"
+                                 ng-true-value="'21 Totacco Products, '" ng-false-value="''">
+                         </label>
+                        <label>22 Textile Mill Products:
+                          <input type="checkbox" ng-model="checkboxModel.value22"
+                          ng-true-value="'22 Textile Mill Products, '" ng-false-value="''">
+                        </label>
+                       <label>23 Apparel and Other Textile Products:
+                          <input type="checkbox" ng-model="checkboxModel.value23"
+                          ng-true-value="'23 Apparel and Other Textile Products, '" ng-false-value="''">
+                        </label>
+                       <label>24 Lumber and Wood Products:
+                          <input type="checkbox" ng-model="checkboxModel.value24"
+                          ng-true-value="'24 Lumber and Wood Products, '" ng-false-value="''">
+                        </label>
+                       <label>25 Furniture and Fixtures:
+                          <input type="checkbox" ng-model="checkboxModel.value25"
+                          ng-true-value="'25 Furniture and Fixtures, '" ng-false-value="''">
+                        </label>
+                       <label>26 Paper and Allied Products:
+                          <input type="checkbox" ng-model="checkboxModel.value26"
+                          ng-true-value="'26 Paper and Allied Products, '" ng-false-value="''">
+                        </label>
+                       <label>27 Printing and Publishing:
+                          <input type="checkbox" ng-model="checkboxModel.value27"
+                          ng-true-value="'27 Printing and Publishing, '" ng-false-value="''">
+                        </label>
+                       <label>28 Chemicals and Allied Products:
+                          <input type="checkbox" ng-model="checkboxModel.value28"
+                          ng-true-value="'28 Chemicals and Allied Products, '" ng-false-value="''">
+                        </label>
+                       <label>29 Petroleum and Coal Products:
+                          <input type="checkbox" ng-model="checkboxModel.value29"
+                          ng-true-value="'29 Petroleum and Coal Products, '" ng-false-value="''">
+                        </label>
+                       <label>30 Rubber and Misc. Plastic Products:
+                          <input type="checkbox" ng-model="checkboxModel.value30"
+                          ng-true-value="'30 Rubber and Misc. Plastic Products, '" ng-false-value="''">
+                        </label>
+                        <label>31 Leather and Leather Products:
+                          <input type="checkbox" ng-model="checkboxModel.value31"
+                          ng-true-value="'31 Leather and Leather Products, '" ng-false-value="''">
+                        </label>
+                      <label>32 Stone, Clay and Glass Products:
+                          <input type="checkbox" ng-model="checkboxModel.value32"
+                          ng-true-value="'32 Stone, Clay and Glass Products, '" ng-false-value="''">
+                        </label>
+                      <label>33 Primary Metal Industries:
+                          <input type="checkbox" ng-model="checkboxModel.value33"
+                          ng-true-value="'33 Primary Metal Industries, '" ng-false-value="''">
+                        </label>
+                      <label>34 Fabricated Metal Products:
+                          <input type="checkbox" ng-model="checkboxModel.value34"
+                          ng-true-value="'34 Fabricated Metal Products, '" ng-false-value="''">
+                        </label>
+                      <label>35 Indusrial Machinery and Equipment:
+                          <input type="checkbox" ng-model="checkboxModel.value35"
+                          ng-true-value="'35 Indusrial Machinery and Equipment, '" ng-false-value="''">
+                        </label>
+                      <label>36 Electronic and Other Electrical Equipment:
+                          <input type="checkbox" ng-model="checkboxModel.value36"
+                          ng-true-value="'36 Electronic and Other Electrical Equipment, '" ng-false-value="''">
+                        </label>
+                      <label>37 Transportation Equipment:
+                          <input type="checkbox" ng-model="checkboxModel.value37"
+                          ng-true-value="'37 Transportation Equipment, '" ng-false-value="''">
+                        </label>
+                      <label>38 Instrumentas and Related Products:
+                          <input type="checkbox" ng-model="checkboxModel.value38"
+                          ng-true-value="'38 Instrumentas and Related Products, '" ng-false-value="''">
+                        </label>
+                      <label>39 Miscellaneous Manufacturing Industries:
+                          <input type="checkbox" ng-model="checkboxModel.value39"
+                          ng-true-value="'39 Miscellaneous Manufacturing Industries, '" ng-false-value="''">
+                        </label>
+                        <hr style="margin:0;">
+                        <label><span class="group_underline">Transportation and Public Utilities:</span></label><br />
+                        <label>40 Railroad Transportation:
+                          <input type="checkbox" ng-model="checkboxModel.value40"
+                          ng-true-value="'40 Railroad Transportation, '" ng-false-value="''">
+                        </label>
+                        <label>41 Local and Interrurban Passenger Transit:
+                          <input type="checkbox" ng-model="checkboxModel.value41"
+                          ng-true-value="'41 Local and Interurban Passenger Transit, '" ng-false-value="''">
+                        </label>
+                        <label>42 Trucking and Warehousing:
+                          <input type="checkbox" ng-model="checkboxModel.value42"
+                          ng-true-value="'42 Trucking and Warehousing, '" ng-false-value="''">
+                        </label>
+                        <label>43 U.S. Postal Service:
+                          <input type="checkbox" ng-model="checkboxModel.value43"
+                          ng-true-value="'43 U.S. Postal Service, '" ng-false-value="''">
+                        </label>
+                        <label>44 Water Transportation:
+                          <input type="checkbox" ng-model="checkboxModel.value44"
+                          ng-true-value="'44 Water Transportation, '" ng-false-value="''">
+                        </label>
+                        <label>45 Transportation by Air:
+                          <input type="checkbox" ng-model="checkboxModel.value45"
+                          ng-true-value="'45 Transportation by Air, '" ng-false-value="''">
+                        </label>
+                        <label>46 Pipelines, Except Natural Gas:
+                          <input type="checkbox" ng-model="checkboxModel.value46"
+                          ng-true-value="'46 Pipelines, Except Natural Gas, '" ng-false-value="''">
+                        </label>
+                        <label>47 Transportation Services:
+                          <input type="checkbox" ng-model="checkboxModel.value47"
+                          ng-true-value="'47 Transportation Services, '" ng-false-value="''">
+                        </label>
+                        <label>48 Communications:
+                          <input type="checkbox" ng-model="checkboxModel.value48"
+                          ng-true-value="'48 Communications, '" ng-false-value="''">
+                        </label>
+                        <label>49 Electric, Gas and Sanitary Services:
+                          <input type="checkbox" ng-model="checkboxModel.value49"
+                          ng-true-value="'49 Electric, Gas and Sanitary Services, '" ng-false-value="''">
+                        </label>
+                      </td>
+                      <td class="col-sm-6">
+                      <label><span class="group_underline">Wholesale Trade:</span></label><br />
+                        <label>50 Wholesale Trade - Durable Goods:
+                          <input type="checkbox" ng-model="checkboxModel.value50"
+                          ng-true-value="'50 Wholesale Trade - Durable Goods, '" ng-false-value="''">
+                        </label>
+                        <label>51 Wholesale Trade - Non-Durable Goods:
+                          <input type="checkbox" ng-model="checkboxModel.value51"
+                                 ng-true-value="'51 Wholesale Trade - Non-Durable Goods, '" ng-false-value="''">
+                         </label>
+                         <hr style="margin:0;">
+                        <label><span class="group_underline">Retail Trade:</span></label>
+                        <br />
+                        <label>52 Building Materials and Garden Supplies:
+                          <input type="checkbox" ng-model="checkboxModel.value52"
+                                 ng-true-value="'52 Building Materials and Garden Supplies, '" ng-false-value="''">
+                         </label>
+                        <label>53 General Merchandising:
+                          <input type="checkbox" ng-model="checkboxModel.value53"
+                                 ng-true-value="'53 General Merchandising, '" ng-false-value="''">
+                         </label>                        
+                        <label>54 Food Stores:
+                          <input type="checkbox" ng-model="checkboxModel.value54"
+                                 ng-true-value="'54 Food Stores, '" ng-false-value="''">
+                         </label>                        
+                        <label>55 Automotive Dealers and Service Stations:
+                          <input type="checkbox" ng-model="checkboxModel.value55"
+                                 ng-true-value="'55 Automotive Dealers and Service Stations, '" ng-false-value="''">
+                         </label>                        
+                        <label>56 Apparel and Accessory Stores:
+                          <input type="checkbox" ng-model="checkboxModel.value56"
+                                 ng-true-value="'56 Apparel and Accessory Stores, '" ng-false-value="''">
+                         </label>                        
+                        <label>57 Furniture and Home Furnishing Stores:
+                          <input type="checkbox" ng-model="checkboxModel.value57"
+                                 ng-true-value="'57 Furniture and Home Furnishing Stores, '" ng-false-value="''">
+                         </label>                        
+                        <label>58 Eating and Drinking Establishments:
+                          <input type="checkbox" ng-model="checkboxModel.value58"
+                                 ng-true-value="'58 Eating and Drinking Establishments, '" ng-false-value="''">
+                         </label>
+                         <label>59 Miscellaneous Retail:
+                          <input type="checkbox" ng-model="checkboxModel.value59"
+                                 ng-true-value="'59 Miscellaneous Retail, '" ng-false-value="''">
+                         </label>                         
+                        <hr style="margin:0;">                        
+                        <label><span class="group_underline">Finance Insurance and Real Estate:</span></label>
+                        <br />
+                        <label>60 Depository Institutions:
+                          <input type="checkbox" ng-model="checkboxModel.value60"
+                                 ng-true-value="'60 Depository Institutions, '" ng-false-value="''">
+                         </label>
+                        <label>61 Non-depository Institutions:
+                          <input type="checkbox" ng-model="checkboxModel.value61"
+                                 ng-true-value="'61 Non-depository Institutions, '" ng-false-value="''">
+                         </label>
+                        <label>62 Security and Commodity Brokers:
+                          <input type="checkbox" ng-model="checkboxModel.value62"
+                                 ng-true-value="'62 Security and Commodity Brokers, '" ng-false-value="''">
+                         </label>
+                        <label>63 Insurance Carries:
+                          <input type="checkbox" ng-model="checkboxModel.value63"
+                                 ng-true-value="'63 Insurance Carries, '" ng-false-value="''">
+                         </label>
+                        <label>64 Insurance Agents, Brokers and Service:
+                          <input type="checkbox" ng-model="checkboxModel.value64"
+                                 ng-true-value="'64 Insurance Agents, Brokers and Service, '" ng-false-value="''">
+                         </label>
+                        <label>65 Real Estate:
+                          <input type="checkbox" ng-model="checkboxModel.value65"
+                                 ng-true-value="'65 Real Estate, '" ng-false-value="''">
+                         </label>
+                        <label>67 Holding and Other Investment Officers:
+                          <input type="checkbox" ng-model="checkboxModel.value67"
+                                 ng-true-value="'67 Holding and Other Investment Officers, '" ng-false-value="''">
+                         </label>
+                        <label><span class="group_underline">Service:</span></label><br />
+                        <label>70 Hotels and Other Lodging Places:
+                          <input type="checkbox" ng-model="checkboxModel.value70"
+                                 ng-true-value="'70 Hotels and Other Lodging Places, '" ng-false-value="''">
+                         </label>
+                        <label>72 Personal Services:
+                          <input type="checkbox" ng-model="checkboxModel.value72"
+                                 ng-true-value="'72 Personal Services, '" ng-false-value="''">
+                         </label>
+                        <label>73 Business Services:
+                          <input type="checkbox" ng-model="checkboxModel.value73"
+                                 ng-true-value="'73 Business Services, '" ng-false-value="''">
+                         </label>
+                        <label>75 Auto Repair Services and Parking:
+                          <input type="checkbox" ng-model="checkboxModel.value75"
+                                 ng-true-value="'75 Auto Repair Services and Parking, '" ng-false-value="''">
+                         </label>
+                        <label>76 Miscellaneous Repair Services:
+                          <input type="checkbox" ng-model="checkboxModel.value76"
+                                 ng-true-value="'76 Miscellaneous Repair Services, '" ng-false-value="''">
+                         </label>
+                        <label>78 Motion Pictures:
+                          <input type="checkbox" ng-model="checkboxModel.value78"
+                                 ng-true-value="'78 Motion Pictures, '" ng-false-value="''">
+                         </label>
+                        <label>79 Amusements and Recreation Services:
+                          <input type="checkbox" ng-model="checkboxModel.value79"
+                                 ng-true-value="'79 Amusements and Recreation Services, '" ng-false-value="''">
+                         </label>
+                        <label>80 Health Services:
+                          <input type="checkbox" ng-model="checkboxModel.value80"
+                                 ng-true-value="'80 Health Services, '" ng-false-value="''">
+                         </label>
+                        <label>81 Legal Services:
+                          <input type="checkbox" ng-model="checkboxModel.value81"
+                                 ng-true-value="'81 Legal Services, '" ng-false-value="''">
+                         </label>
+                        <label>82 Educational Services:
+                          <input type="checkbox" ng-model="checkboxModel.value82"
+                                 ng-true-value="'82 Educational Services, '" ng-false-value="''">
+                         </label>
+                        <label>83 Social Services:
+                          <input type="checkbox" ng-model="checkboxModel.value83"
+                                 ng-true-value="'82 Social Services, '" ng-false-value="''">
+                         </label>
+                        <label>84 Museums, Botanical, Zoological Gardens:
+                          <input type="checkbox" ng-model="checkboxModel.value84"
+                                 ng-true-value="'84 Museums, Botanical, Zoological Gardens, '" ng-false-value="''">
+                         </label>
+                        <label>86 Membership Organizations:
+                          <input type="checkbox" ng-model="checkboxModel.value86"
+                                 ng-true-value="'86 Membership Organizations, '" ng-false-value="''">
+                         </label>
+                        <label>87 Engineering and Management Services:
+                          <input type="checkbox" ng-model="checkboxModel.value87"
+                                 ng-true-value="'87 Engineering and Management Services, '" ng-false-value="''">
+                         </label>
+                        <label>88 Private Households:
+                          <input type="checkbox" ng-model="checkboxModel.value88"
+                                 ng-true-value="'88 Private Households, '" ng-false-value="''">
+                         </label>
+                        <label>89 Services, NEC:
+                          <input type="checkbox" ng-model="checkboxModel.value89"
+                                 ng-true-value="'89 Services, NEC, '" ng-false-value="''">
+                         </label>                         
+                        <hr style="margin:0;">
+                        <label><span class="group_underline">Public Administration:</span></label><br />
+                        <label>91 Executive, legislative and Garden:
+                          <input type="checkbox" ng-model="checkboxModel.value91"
+                                 ng-true-value="'91 Executive, legislative and Garden, '" ng-false-value="''">
+                        </label>
+                        <label>92 Justice, Public Order, and Safety:
+                          <input type="checkbox" ng-model="checkboxModel.value92"
+                                 ng-true-value="'92 Justice, Public Order, and Safety, '" ng-false-value="''">
+                        </label>
+                        <label>93 Finance, Taxation, and Monetary Benefits:
+                          <input type="checkbox" ng-model="checkboxModel.value93"
+                                 ng-true-value="'93 Finance, Taxation, and Monetary Benefits, '" ng-false-value="''">
+                        </label>
+                        <label>94 Administration of Human Services:
+                          <input type="checkbox" ng-model="checkboxModel.value94"
+                                 ng-true-value="'94 Administration of Human Services, '" ng-false-value="''">
+                        </label>
+                        <label>95 Environmental Quality and Housing:
+                          <input type="checkbox" ng-model="checkboxModel.value95"
+                                 ng-true-value="'95 Environmental Quality and Housing, '" ng-false-value="''">
+                        </label>
+                        <label>96 Administration of Economic Program:
+                          <input type="checkbox" ng-model="checkboxModel.value96"
+                                 ng-true-value="'96 Administration of Economic Program, '" ng-false-value="''">
+                        </label>
+                        <label>97 National Security and International Affairs:
+                          <input type="checkbox" ng-model="checkboxModel.value97"
+                                 ng-true-value="'97 National Security and International Affairs, '" ng-false-value="''">
+                        </label>
+                        <hr style="margin:0;">
+                        <label><span class="group_underline">Non-classifiable Establishments:</span></label><br />
+                        <label>99 Non-classifiable Establishments:
+                          <input type="checkbox" ng-model="checkboxModel.value99"
+                                 ng-true-value="'99 Non-classifiable Establishments, '" ng-false-value="''">
+                        </label>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+            <div class="table-responsive" ng-hide="group2"><!--group 2-->
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td class="col-sm-6">                      
+                     <label>100 Amputation or Enucleation:
+                      <input type="checkbox" ng-model="checkboxModel.value100"
+                      ng-true-value="'100 amputation or Enucleation, '" ng-false-value="''">
+                    </label>
+                    <label>110 Asphyxia or Strangulation Etc.:
+                      <input type="checkbox" ng-model="checkboxModel.value110"
+                         ng-true-value="'110 Asphyxia or Strangulation Etc., '" ng-false-value="''">
+                    </label>
+                     <label>120 Burns (heat):
+                      <input type="checkbox" ng-model="checkboxModel.value120"
+                      ng-true-value="'120 Burns(heat), '" ng-false-value="''">
+                    </label>
+                    <label>130 Burns (Chemical):
+                      <input type="checkbox" ng-model="checkboxModel.value130"
+                         ng-true-value="'30 Burns (Chemical), '" ng-false-value="''">
+                    </label>
+                     <label>140 Concussion:
+                      <input type="checkbox" ng-model="checkboxModel.value140"
+                      ng-true-value="'140 Concussion, '" ng-false-value="''">
+                    </label>
+                    <label>160 Contusion, Crushing, Bruise:
+                      <input type="checkbox" ng-model="checkboxModel.value160"
+                         ng-true-value="'160 Contusion, Crushing, Bruise, '" ng-false-value="''">
+                    </label>
+                     <label>170 Cuts, Laceration, Puncture:
+                      <input type="checkbox" ng-model="checkboxModel.value170"
+                      ng-true-value="'170 Cuts, Laceration, Puncture, '" ng-false-value="''">
+                    </label>
+                    <label>190 Dislocaton:
+                      <input type="checkbox" ng-model="checkboxModel.value190"
+                         ng-true-value="'190 Dislocation, '" ng-false-value="''">
+                    </label>
+                     <label>200 Electric Shock, Electrocution:
+                      <input type="checkbox" ng-model="checkboxModel.value200"
+                      ng-true-value="'200 Electric Shock, Electrocution, '" ng-false-value="''">
+                    </label>
+                    <label>210 Fracture:
+                      <input type="checkbox" ng-model="checkboxModel.value210"
+                         ng-true-value="'200 Fracture, '" ng-false-value="''">
+                    </label>
+                     <label>250 Hernia, Rupture:
+                      <input type="checkbox" ng-model="checkboxModel.value250"
+                      ng-true-value="'250 Hernia, Rupture, '" ng-false-value="''">
+                    </label>
+                    <label>300 Scratches, Abrasions:
+                    <input type="checkbox" ng-model="checkboxModel.value110"
+                         ng-true-value="'110 Asphyxia or Strangulation Etc., '" ng-false-value="''">
+                    </label>
+                    <label>310 Sprains, Strins:
+                      <input type="checkbox" ng-model="checkboxModel.value110"
+                         ng-true-value="'110 Asphyxia or Strangulation Etc., '" ng-false-value="''">
+                    </label>
+                    <label>400 Multiple Injuries:
+                      <input type="checkbox" ng-model="checkboxModel.value400"
+                    ng-true-value="'400 Multiple Injuries, '" ng-false-value="''">
+                    </label>
+                    <label>900 No Injury:
+                      <input type="checkbox" ng-model="checkboxModel.value900"
+                         ng-true-value="'900 No Injury, '" ng-false-value="''">
+                    </label>                 
+                    <label>950 Damage to Prosthetic Devices:
+                      <input type="checkbox" ng-model="checkboxModel.value950"
+                         ng-true-value="'950 Damage to Prosthetic Devices, '" ng-false-value="''">
+                    </label>                 
+                    <label>995 No Other Injury, NEC--:
+                      <input type="checkbox" ng-model="checkboxModel.value995"
+                         ng-true-value="'995 No Other Injury, NEC--, '" ng-false-value="''">
+                    </label>                 
+                    <label>999 Non-classifiable:
+                      <input type="checkbox" ng-model="checkboxModel.value900"
+                         ng-true-value="'900 No Injury, '" ng-false-value="''">
+                    </label>
+                   <hr style="margin:0;">
+                  <label><span class="group_underline">Infective or Parasitic Disease</span></label><br />                                     
+                    <label>150 Infective or Parasitic Disease, UNS:
+                      <input type="checkbox" ng-model="checkboxModel.value150"
+                         ng-true-value="'150 Infective or Parasitic Disease, UNS, '" ng-false-value="''">
+                    </label>                 
+                    <label>151 Amebiasis:
+                      <input type="checkbox" ng-model="checkboxModel.value151"
+                         ng-true-value="'151 Amebiasis, '" ng-false-value="''">
+                    </label>                 
+                    <label>152 Anthrax:
+                      <input type="checkbox" ng-model="checkboxModel.value152"
+                         ng-true-value="'152 Anthrax, '" ng-false-value="''">
+                    </label>                 
+                    <label>153 Brucellosis:
+                      <input type="checkbox" ng-model="checkboxModel.value153"
+                         ng-true-value="'153 Brucellosis, '" ng-false-value="''">
+                    </label>                 
+                    <label>154 Conjunctivitis and Opthalmia:
+                      <input type="checkbox" ng-model="checkboxModel.value154"
+                         ng-true-value="'154 Conjunctivitis and Opthalmia, '" ng-false-value="''">
+                    </label>                 
+                    <label>156 Tetanus:
+                      <input type="checkbox" ng-model="checkboxModel.value156"
+                         ng-true-value="'156 Tetanus, '" ng-false-value="''">
+                    </label>                 
+                    <label>157 Tuberculosis:
+                      <input type="checkbox" ng-model="checkboxModel.value157"
+                         ng-true-value="'157 Tuberculosis, '" ng-false-value="''">
+                    </label>                 
+                    <label>159 Other Infective or Parasitic Diseases:
+                      <input type="checkbox" ng-model="checkboxModel.value159"
+                         ng-true-value="'159 Other Infective or Parasitic Diseases, '" ng-false-value="''">
+                    </label>                 
+                   <hr style="margin:0;">
+                  <label><span class="group_underline">Dermatitis</span></label><br />   
+                  <label>180 Dermatitis, UNS*:
+                      <input type="checkbox" ng-model="checkboxModel.value180"
+                         ng-true-value="'180 Dermatitis, UNS*, '" ng-false-value="''">
+                    </label>                  
+                  <label>183 Primary Infections of the Skin:
+                      <input type="checkbox" ng-model="checkboxModel.value183"
+                         ng-true-value="'183 Primary Infections of the Skin, '" ng-false-value="''">
+                    </label>                  
+                  <label>184 Other Skin Conditions:
+                      <input type="checkbox" ng-model="checkboxModel.value184"
+                         ng-true-value="'184 Other Skin Conditions, '" ng-false-value="''">
+                    </label>                  
+                  <label>185 Dermatitis, Allergenic or Contact:
+                      <input type="checkbox" ng-model="checkboxModel.value185"
+                         ng-true-value="'185 Dermatitis, Allergenic or Contact, '" ng-false-value="''">
+                    </label>                  
+                  <label>189 Skin Condition, NEC**:
+                      <input type="checkbox" ng-model="checkboxModel.value189"
+                         ng-true-value="'189 Skin Condition, NEC**, '" ng-false-value="''">
+                    </label>
+                   <hr style="margin:0;">
+                  <label><span class="group_underline">Poisoning Systemic</span></label><br />   
+                  <label>270 Poisoning, systemic, UNS*:
+                      <input type="checkbox" ng-model="checkboxModel.value270"
+                         ng-true-value="'270 Poisoning, systemic, UNS*, '" ng-false-value="''">
+                    </label>                  
+                  <label>271 Due to Toxic Materials other than Lead:
+                      <input type="checkbox" ng-model="checkboxModel.value271"
+                         ng-true-value="'271 Due to Toxic Materials other than Lead, '" ng-false-value="''">
+                    </label>                  
+                  <label>272 Diseases of the blood and Blood Forming Organs:
+                      <input type="checkbox" ng-model="checkboxModel.value272"
+                         ng-true-value="'272 Diseases of the blood and Blood Forming Organs, '" ng-false-value="''">
+                    </label>                  
+                  <label>273 Upper Respiratory Conditions:
+                      <input type="checkbox" ng-model="checkboxModel.value273"
+                         ng-true-value="'273 Upper Respiratory Conditions, '" ng-false-value="''">
+                    </label>                  
+                  <label>274 Influenza, Pneumonia, Etc.:
+                      <input type="checkbox" ng-model="checkboxModel.value274"
+                         ng-true-value="'274 Influenza, Pneumonia, Etc., '" ng-false-value="''">
+                    </label>                  
+                  <label>276 Other Diseases of the Gastro-Intestinal Tract:
+                      <input type="checkbox" ng-model="checkboxModel.value276"
+                         ng-true-value="'276 Other Diseases of the Gastro-Intestinal Tract, '" ng-false-value="''">
+                    </label>                  
+                  <label>278 Effects of Lead:
+                      <input type="checkbox" ng-model="checkboxModel.value278"
+                         ng-true-value="'278 Effects of Lead, '" ng-false-value="''">
+                    </label>                  
+                  <label>279 Other Toxic Effects of One System Only:
+                      <input type="checkbox" ng-model="checkboxModel.value279"
+                         ng-true-value="'279 Other Toxic Effects of One System Only, '" ng-false-value="''">
+                    </label>
+                   <hr style="margin:0;">
+                    <label><span class="group_underline"> Respiratory systems Conditions of</span></label><br />
+                    <label>570 Respiratory systems, Conditions of:
+                      <input type="checkbox" ng-model="checkboxModel.value570"
+                    ng-true-value="'570 Respiratory systems, Conditions of, '" ng-false-value="''">
+                    </label>
+                    <label>571 Upper Respiratory:
+                      <input type="checkbox" ng-model="checkboxModel.value571"
+                         ng-true-value="'571 Upper Respiratory, '" ng-false-value="''">
+                    </label>                 
+                    <label>572 Asthma, Influenza, Pneumonia:
+                      <input type="checkbox" ng-model="checkboxModel.value572"
+                         ng-true-value="'572 Asthma, Influenza, Pneumonia, '" ng-false-value="''">
+                    </label> 
+                  </td>
+                  <td>
+                  <label><span class="group_underline">Pneumoconiosis</span></label><br /><label>280 Pneumoconiosis:
+                      <input type="checkbox" ng-model="checkboxModel.value280"
+                         ng-true-value="'280 Pneumoconiosis, '" ng-false-value="''">
+                    </label>                 
+                    <label>281 Aluminosis:
+                      <input type="checkbox" ng-model="checkboxModel.value281"
+                         ng-true-value="'281 Aluminosis, '" ng-false-value="''">
+                    </label>                 
+                    <label>282 Anthracosis:
+                      <input type="checkbox" ng-model="checkboxModel.value282"
+                         ng-true-value="'282 Anthracosis, '" ng-false-value="''">
+                    </label>                 
+                    <label>283 Asbestosis:
+                      <input type="checkbox" ng-model="checkboxModel.value283"
+                         ng-true-value="'283 Asbestosis, '" ng-false-value="''">
+                    </label>                 
+                    <label>284 Byssinosis:
+                      <input type="checkbox" ng-model="checkboxModel.value284"
+                         ng-true-value="'284 Byssinosis, '" ng-false-value="''">
+                    </label>                 
+                    <label>286 Silicosis:
+                      <input type="checkbox" ng-model="checkboxModel.value286"
+                         ng-true-value="'286 Silicosis, '" ng-false-value="''">
+                    </label>                 
+                    <label>287 Other Pneurnoconioses:
+                      <input type="checkbox" ng-model="checkboxModel.value287"
+                         ng-true-value="'Other Pneurnoconioses, '" ng-false-value="''">
+                    </label>                 
+                    <label>289 Pneumoconiosis and Tuberculosis:
+                      <input type="checkbox" ng-model="checkboxModel.value289"
+                         ng-true-value="'289 Pneumoconiosis and Tuberculosis, '" ng-false-value="''">
+                    </label>                 
+                   <hr style="margin:0;">
+                  <label><span class="group_underline">Nervous System Conditions of</span></label><br />   
+                  <label>560 Nervous System, Conditions of -NEC**:
+                      <input type="checkbox" ng-model="checkboxModel.value560"
+                         ng-true-value="'Nervous System, Conditions of -NEC**, '" ng-false-value="''">
+                    </label>                  
+                  <label>561 Diseases of the Central Nervous System:
+                      <input type="checkbox" ng-model="checkboxModel.value561"
+                         ng-true-value="'561 Diseases of the Central Nervous System, '" ng-false-value="''">
+                    </label>                  
+                  <label>562 Diseases of the Nerves and Peripheral Ganglia:
+                      <input type="checkbox" ng-model="checkboxModel.value562"
+                         ng-true-value="'562 Diseases of the Nerves and Peripheral Ganglia, '" ng-false-value="''">
+                    </label>
+                   <hr style="margin:0;">
+                  <label><span class="group_underline">Neoulasm Turno</span></label><br />
+                  <label>550 Neoplasm Tumor, LTNS-:
+                      <input type="checkbox" ng-model="checkboxModel.value550"
+                         ng-true-value="'550 Neoplasm Tumor, LTNS-, '" ng-false-value="''">
+                    </label>                  
+                  <label>551 Malignant:
+                      <input type="checkbox" ng-model="checkboxModel.value551"
+                         ng-true-value="'551 Malignant, '" ng-false-value="''">
+                    </label>                  
+                  <label>552 Benign:
+                      <input type="checkbox" ng-model="checkboxModel.value552"
+                         ng-true-value="'552 Benign, '" ng-false-value="''">
+                    </label>
+                  <hr style="margin:0;">                  
+                  <label><span class="group_underline">Radiation Effects</span></label><br />
+                  <label>290 Radiation Effects, UNS*:
+                      <input type="checkbox" ng-model="checkboxModel.value290"
+                         ng-true-value="'290 Radiation Effects, UNS*, '" ng-false-value="''">
+                    </label>                  
+                  <label>291 Non-Ionizing Radiation:
+                      <input type="checkbox" ng-model="checkboxModel.value291"
+                         ng-true-value="'291 Non-Ionizing Radiation, '" ng-false-value="''">
+                    </label>                  
+                  <label>292 Microwaves:
+                      <input type="checkbox" ng-model="checkboxModel.value292"
+                         ng-true-value="'292 Microwaves, '" ng-false-value="''">
+                    </label>                  
+                  <label>293 Ionizing Radiation - X-Ray:
+                      <input type="checkbox" ng-model="checkboxModel.value293"
+                         ng-true-value="'293 Ionizing Radiation - X-Ray, '" ng-false-value="''">
+                    </label>                  
+                  <label>294 Ionizing Radiation -Isotopes:
+                      <input type="checkbox" ng-model="checkboxModel.value294"
+                         ng-true-value="'294 Ionizing Radiation -Isotopes, '" ng-false-value="''">
+                    </label>                  
+                  <label>295 Welder's Flash:
+                      <input type="checkbox" ng-model="checkboxModel.value295"
+                         ng-true-value="'295 Welders Flash, '" ng-false-value="''">
+                  </label>                  
+                  <hr style="margin:0;">                  
+                  <label><span class="group_underline">Other</span></label><br />
+                  <label>265 Carpal Tunnel Syndrome:
+                      <input type="checkbox" ng-model="checkboxModel.value265"
+                         ng-true-value="'265 Carpal Tunnel Syndrome, '" ng-false-value="''">
+                    </label>                  
+                  <label>510 Cardiovascular and Other conditions of the Circulatory System:
+                      <input type="checkbox" ng-model="checkboxModel.value510"
+                         ng-true-value="'510 Cardiovascular and Other conditions of the Circulatory System, '" ng-false-value="''">
+                    </label>                  
+                  <label>520 Complications Pecuiliar to Medical Care:
+                      <input type="checkbox" ng-model="checkboxModel.value520"
+                         ng-true-value="'520 Complications Pecuiliar to Medical Care, '" ng-false-value="''">
+                    </label>                  
+                  <label>500 Effects of Changes in Atmospheric Pressure:
+                      <input type="checkbox" ng-model="checkboxModel.value500"
+                         ng-true-value="'500 Effects of Changes in Atmospheric Pressure, '" ng-false-value="''">
+                    </label>                  
+                  <label>240 Effects of Environmental Heat:
+                      <input type="checkbox" ng-model="checkboxModel.value240"
+                         ng-true-value="'240 Effects of Environmental Heat, '" ng-false-value="''">
+                    </label>                  
+                  <label>220 Effects of Exposure to Low Temperature:
+                      <input type="checkbox" ng-model="checkboxModel.value220"
+                         ng-true-value="'220 Effects of Exposure to Low Temperature, '" ng-false-value="''">
+                    </label>                  
+                  <label>530 Eye, other Diseases of the Eye:
+                      <input type="checkbox" ng-model="checkboxModel.value530"
+                         ng-true-value="'530 Eye, other Diseases of the Eye, '" ng-false-value="''">
+                    </label>                  
+                  <label>230 Hearing Loss or Impaiment:
+                      <input type="checkbox" ng-model="checkboxModel.value230"
+                         ng-true-value="'230 Hearing Loss or Impaiment, '" ng-false-value="''">
+                    </label>                  
+                  <label>991 Heart Condition Excludes Heart Attack:
+                      <input type="checkbox" ng-model="checkboxModel.value991"
+                         ng-true-value="'991 Heart Condition Excludes Heart Attack, '" ng-false-value="''">
+                    </label>                  
+                  <label>320 Hemorrhoids:
+                      <input type="checkbox" ng-model="checkboxModel.value320"
+                         ng-true-value="'320 Hemorrhoids, '" ng-false-value="''">
+                    </label>                  
+                  <label>330 Hepatitis, Serum and Infective:
+                      <input type="checkbox" ng-model="checkboxModel.value265"
+                         ng-true-value="'265 Carpal Tunnel Syndrome, '" ng-false-value="''">
+                    </label>                  
+                  <label>275 Hepatitis, Toxic:
+                      <input type="checkbox" ng-model="checkboxModel.value275"
+                         ng-true-value="'275 Hepatitis, Toxic, '" ng-false-value="''">
+                    </label>                  
+                  <label>260 Inflammation of Joints, Etc.:
+                      <input type="checkbox" ng-model="checkboxModel.value260"
+                         ng-true-value="'260 Inflammation of Joints, Etc., '" ng-false-value="''">
+                    </label>                  
+                  <label>540 Mental Disorders:
+                      <input type="checkbox" ng-model="checkboxModel.value540"
+                         ng-true-value="'540 Mental Disorders, '" ng-false-value="''">
+                    </label>                  
+                  <label>900 No Illness:
+                      <input type="checkbox" ng-model="checkboxModel.value2900"
+                         ng-true-value="'900 No Illness, '" ng-false-value="''">
+                    </label>                  
+                  <label>999 Non-classifiable:
+                      <input type="checkbox" ng-model="checkboxModel.value2999"
+                         ng-true-value="'999 Non-classifiable, '" ng-false-value="''">
+                    </label>                  
+                  <label>990 Occupational Disease, NEC**:
+                      <input type="checkbox" ng-model="checkboxModel.value990"
+                         ng-true-value="'990 Occupational Disease, NEC**, '" ng-false-value="''">
+                    </label>                  
+                  <label>580 Symptoms and Ill-defined Conditions:
+                      <input type="checkbox" ng-model="checkboxModel.value580"
+                         ng-true-value="'580 Symptoms and Ill-defined Conditions, '" ng-false-value="''">
+                    </label>                  
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-responsive" ng-hide="group3"><!--group 2-->
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td class="col-sm-6">                                       
+                      <label><span class="group_underline">Head</span></label><br />
+                      <label>100 Head, UNS*:
+                      <input type="checkbox" ng-model="checkboxModel.value3100" ng-true-value="'100 Head, UNS*, '" ng-false-value="''">
+                      </label>
+                      <label>110 Brain:
+                      <input type="checkbox"  ng-model="checkboxModel.value3110" ng-true-value="'110 Brain, '" ng-false-value="''">
+                      </label>
+                      <label>120 Ear(s), UNS*:
+                      <input type="checkbox" ng-model="checkboxModel.value3120" ng-true-value="'120 Ear(s), UNS*, '" ng-false-value="''">
+                      </label>
+                      <label>121 Ear(s), External:
+                      <input type="checkbox" ng-model="checkboxModel.value3121" ng-true-value="'120 Ear(s), External, '" ng-false-value="''">
+                      </label>
+                      <label>124 Ear(s), Internal:
+                      <input type="checkbox" ng-model="checkboxModel.value3124" ng-true-value="'124 Ear(s), Internal, '" ng-false-value="''">
+                      </label>
+                      <label>130 Eye(s), UNS*:
+                      <input type="checkbox" ng-model="checkboxModel.value3130" ng-true-value="'120 Ear(s), UNS*, '" ng-false-value="''">
+                      </label>
+                      <label>140 Face, UNS*:
+                      <input type="checkbox" ng-model="checkboxModel.value3140" ng-true-value="'140 Face, UNS*, '" ng-false-value="''">
+                      </label>
+                      <label>141 Jaw, Chin:
+                      <input type="checkbox" ng-model="checkboxModel.value3141" ng-true-value="'141 Jaw, Chin, '" ng-false-value="''">
+                      </label>
+                      <label>144 Mouth and Throat (vocal chords, larynx):
+                      <input type="checkbox" ng-model="checkboxModel.value3144" ng-true-value="'144 Mouth and Throat (vocal chords, larynx), '" ng-false-value="''">
+                      </label>
+                      <label>146 Nose:
+                      <input type="checkbox" ng-model="checkboxModel.value3146" ng-true-value="'146 Nose, '" ng-false-value="''">
+                      </label>
+                      <label>148 Face, Multiple Parts:
+                      <input type="checkbox" ng-model="checkboxModel.value3148" ng-true-value="'148 Face, Multiple Parts, '" ng-false-value="''">
+                      </label>
+                      <label>149 Face, NEC-:
+                      <input type="checkbox" ng-model="checkboxModel.value3149" ng-true-value="'149 Face, NEC-, '" ng-false-value="''">
+                      </label>
+                      <label>150 Scalp:
+                      <input type="checkbox" ng-model="checkboxModel.value3150" ng-true-value="'150 Scalp, '" ng-false-value="''">
+                      </label>
+                      <label>160 Skull:
+                      <input type="checkbox" ng-model="checkboxModel.value3160" ng-true-value="'160 Skull, '" ng-false-value="''">
+                      </label>
+                      <label>198 Head Mutiple:
+                      <input type="checkbox" ng-model="checkboxModel.value3198" ng-true-value="'198 Head Mutiple, '" ng-false-value="''">
+                      </label>
+                      <label>200 Neck & Cervical Vertebrae:
+                      <input type="checkbox" ng-model="checkboxModel.value3200" ng-true-value="'200 Neck & Cervical Vertebrae, '" ng-false-value="''">
+                      </label>
+                      <hr style="margin:0;">
+                      <label><span class="group_underline">Upper Extremities</span></label><br />
+                      <label>300 Upper Extremities, NEC**:
+                      <input type="checkbox" ng-model="checkboxModel.value3300" ng-true-value="'>300 Upper Extremities, NEC**, '" ng-false-value="''">
+                      </label>
+                      <label>310 Arm(s), UNS*:
+                      <input type="checkbox" ng-model="checkboxModel.value3310" ng-true-value="'310 Arm(s), UNS*, '" ng-false-value="''">
+                      </label>
+                      <label>311 Upper Arm:
+                      <input type="checkbox" ng-model="checkboxModel.value3311" ng-true-value="'310 Upper Arm, '" ng-false-value="''">
+                      </label>
+                      <label>313 Elbow(s):
+                      <input type="checkbox" ng-model="checkboxModel.value3313" ng-true-value="'313 Elbow(s), '" ng-false-value="''">
+                      </label>
+                      <label>315 Forearm(s):
+                      <input type="checkbox" ng-model="checkboxModel.value3315" ng-true-value="'315 Forearm(s), '" ng-false-value="''">
+                      </label>
+                      <label>318 Arm(s), Multiple:
+                      <input type="checkbox" ng-model="checkboxModel.value3318" ng-true-value="'318 Arm(s), Multiple, '" ng-false-value="''">
+                      </label>
+                      <label>319 Arms(s) NEC**:
+                      <input type="checkbox" ng-model="checkboxModel.value3319" ng-true-value="'319 Arms(s) NEC**, '" ng-false-value="''">
+                      </label>
+                      <label>320 Wrist(s):
+                      <input type="checkbox" ng-model="checkboxModel.value3320" ng-true-value="'320 Wrist(s), '" ng-false-value="''">
+                      </label>
+                      <label>330 Hand(s), Not Wrists or Fingers:
+                      <input type="checkbox" ng-model="checkboxModel.value3330" ng-true-value="'330 Hand(s), Not Wrists or Fingers, '" ng-false-value="''">
+                      </label>
+                      <label>340 Finger(s):
+                      <input type="checkbox" ng-model="checkboxModel.value3340" ng-true-value="'340 Finger(s), '" ng-false-value="''">
+                      </label>
+                  </td>
+                  <td>
+                      <label>398 Upper Extremities, Multiple:
+                      <input type="checkbox" ng-model="checkboxModel.value3398" ng-true-value="'398 Upper Extremities, Multiple, '" ng-false-value="''">
+                      </label>
+                      <label>400 Trunk, UNS*:
+                      <input type="checkbox"  ng-model="checkboxModel.value3400" ng-true-value="'400 Trunk, UNS*, '" ng-false-value="''">
+                      </label>
+                      <label>410 Abdomen, Internal Organs, Inguinal Hernia:
+                      <input type="checkbox" ng-model="checkboxModel.value3410" ng-true-value="'410 Abdomen, Internal Organs, Inguinal Hernia, '" ng-false-value="''">
+                      </label>
+                      <label>420 Back:
+                      <input type="checkbox" ng-model="checkboxModel.value3420" ng-true-value="'420 Back, '" ng-false-value="''">
+                      </label>
+                      <label>430 Chest, Ribs, Breastbone, Internal Organs:
+                      <input type="checkbox" ng-model="checkboxModel.value3430" ng-true-value="'430 Chest, Ribs, Breastbone, Internal Organs, '" ng-false-value="''">
+                      </label>
+                      <label>440 Hip(s) Pelvis, Organs and Buttocks:
+                      <input type="checkbox" ng-model="checkboxModel.value3440" ng-true-value="'440 Hip(s) Pelvis, Organs and Buttocks, '" ng-false-value="''">
+                      </label>
+                      <label>450 Shoulder(s):
+                      <input type="checkbox" ng-model="checkboxModel.value3450" ng-true-value="'450 Shoulder(s), '" ng-false-value="''">
+                      </label>
+                      <label>498 Trunk, Multiple:
+                      <input type="checkbox" ng-model="checkboxModel.value3498" ng-true-value="'498 Trunk, Multiple, '" ng-false-value="''">
+                      </label>
+                      <hr style="margin:0;">
+                      <label><span class="group_underline">Lower Extremities</span></label><br />
+                      <label>500 Lower Extremities:
+                      <input type="checkbox" ng-model="checkboxModel.value3500" ng-true-value="'500 Lower Extremities, '" ng-false-value="''">
+                      </label>
+                      <label>510 Leg(s), UNS*:
+                      <input type="checkbox" ng-model="checkboxModel.value3510" ng-true-value="'510 Leg(s), UNS*, '" ng-false-value="''">
+                      </label>
+                      <label>513 Knee(s):
+                      <input type="checkbox" ng-model="checkboxModel.value3513" ng-true-value="'513 Knee(s), '" ng-false-value="''">
+                      </label>
+                      <label>515 Lower Leg(s):
+                      <input type="checkbox" ng-model="checkboxModel.value3515" ng-true-value="'515 Lower Leg(s), '" ng-false-value="''">
+                      </label>
+                      <label>518 Leg(s), Multiple:
+                      <input type="checkbox" ng-model="checkboxModel.value3518" ng-true-value="'518 Leg(s), Multiple, '" ng-false-value="''">
+                      </label>
+                      <label>519 Legs(s), NEC**:
+                      <input type="checkbox" ng-model="checkboxModel.value3519" ng-true-value="'519 Legs(s), NEC**, '" ng-false-value="''">
+                      </label>
+                      <label>520 Ankle(s):
+                      <input type="checkbox" ng-model="checkboxModel.value3520" ng-true-value="'520 Ankle(s), '" ng-false-value="''">
+                      </label>
+                      <label>530 Foot or Feet, Not Ankle:
+                      <input type="checkbox" ng-model="checkboxModel.value3530" ng-true-value="'530 Foot or Feet, Not Ankle, '" ng-false-value="''">
+                      </label>
+                      <label>540 Toe(s):
+                      <input type="checkbox" ng-model="checkboxModel.value3540" ng-true-value="'540 Toe(s), '" ng-false-value="''">
+                      </label>
+                      <label>598 Lower Extremities Multiple:
+                      <input type="checkbox" ng-model="checkboxModel.value3598" ng-true-value="'598 Lower Extremities Multiple, '" ng-false-value="''">
+                      </label>
+                      <label>700 Multiple Parts:Applies when more than on major body part as been efffected such as an arm and a leg.
+                      <input type="checkbox" ng-model="checkboxModel.value3700" ng-true-value="'700 Multiple Parts, '" ng-false-value="''">
+                      </label>
+                      <label>999 Non-Classifiable: Insufficient information to identify part of body effected.  Includes damage to prosthetic devises
+                      <input type="checkbox" ng-model="checkboxModel.value3999" ng-true-value="'999 Non-Classifiable, '" ng-false-value="''">
+                      </label>
+                  </td>
+                </tr>
+                </tbody>
+                </table>
+             </div>
+              <input type="text" ng-model="injuryreport.partinjured" class="form-control" id="injuryreport-partinjured" placeholder="{{injurytypes()}}">
+            </div>
+      </div>      
+      <div class="row" style="text-align:left;">
+            <div class="col-sm-12">
+              <label for="injuryreport-exactlocation">Exact Location:</label>
+              <input type="text" ng-model="injuryreport.exactlocation" class="form-control" id="injuryreport-exactlocation">
+            </div>
+      </div>  
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-injurydescription">Description of Accident: How did this happen? Why did it happen?</label><br />
+          <input type="text" ng-model="injuryreport.injurydescription" class="form-control" id="injuryreport-injurydescription">
+          </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-howtoprevent">How can we prevent this from happening again?</label><br />
+          <input type="text" ng-model="injuryreport.howtoprevent" class="form-control" id="injuryreport-howtoprevent">
+          </div>
+      </div>
+      <div class="row" style="text-align:left;">
+            <div class="col-sm-12">
+              <label for="injuryreport-witnesses">Witnesses</label>
+              <input type="text" ng-model="injuryreport.witnesses" class="form-control" id="injuryreport-witnesses">
+            </div>
+      </div>
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-reoccurring">Is this a reoccurring injury?&nbsp;&nbsp;</label>
+          <label>Yes</label>
+            <input type="radio" ng-model="injuryreport.reoccurring" value="Yes">          
+          <label>No</label> 
+            <input type="radio" ng-model="injuryreport.reoccurring" value="No">                   
+        </div>
+      </div> 
+      <hr>
+      <div><!--about seeking doctor and info -->   
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-12">
+          <label for="injuryreport-medicalattention">Have you sought medical attention for this injury?&nbsp;&nbsp;</label>
+          <label>Yes</label>
+            <input type="radio" ng-click="medyesno('y')" ng-model="injuryreport.medicalattention" value="Yes">          
+          <label>No</label> 
+            <input type="radio" ng-click="medyesno('n')" ng-model="injuryreport.medicalattention" value="No">                   
+        </div>
+      </div>
+      <div class="well" ng-hide="soughtmed"><!--info about doctor-->      
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-6">
+          <label for="injuryreport-doctorname">If Yes, what is the dcotor's name?</label>
+          <input type="text" ng-model="injuryreport.doctorname" class="form-control" id="injuryreport-doctorname">    
+        </div>
+        <div class="col-sm-3">
+          <label for="injuryreport-doctorphone">Doctor's phone number</label>
+          <input type="text" ng-model="injuryreport.doctorphone" class="form-control" id="injuryreport-doctorphone">    
+        </div>
+        <div class="col-sm-3">
+          <label for="injuryreport-doctorfax">Doctor's fax number</label>
+          <input type="text" ng-model="injuryreport.doctorfax" class="form-control" id="injuryreport-doctorfax">    
+        </div>
+      </div>
+      <p style="border: 1px solid #ccc;border-radius: 5px;margin-top:8px;padding:10px;color:#007AA3;">Note: All medical notes must be submitted to Human Resources after each visit should you wish the bills to be paid for under worker's compensation.
+      </p>
+      </div><!--end of info about doctor-->
+      </div><!--sought medical and info about doctor section -->
+      <div class="panel panel-default"><div class="panel-body" style="color:#007AA3;">Note: Any false or misleading statements representation or submissions affecting a claim for workers's compensation are punishable as a felony and/or fine and criminal restitution pursuant to M.G.L. c. 152 Â§ 14. Signed under pains and penalties of injury.</div></div>  
+      <div class="row" style="text-align:left;">
+        <div class="col-sm-6">
+          <label for="injuryreport-empsigninature">Employee Signature: </label>
+          <input type="text" ng-model="injuryreport.empsigninature" class="form-control" id="injuryreport-empsigninature">    
+        </div>
+        <div class="col-sm-6 input-group">
+          <label for="injuryreport-dt">Date:</label>
+          <div class="col-sm-6 input-group">          
+            <input type="text" ng-model="dt" class="form-control" datepicker-popup="{{format}}" is-open="opened_dt" min-date="2005-06-22" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open_dt($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span> 
+          </div><!--calendar--> 
+        </div><!--date label and calendar-->
+      </div><!--signature and date-->
+      <div class="row" style="text-align:left;margin-top:5px;">
+      <div class="col-sm-6">           
+      <input type="submit" value="Submit" ng-disabled="myForm.fname.$dirty && myForm.fname.$invalid || myForm.lname.$dirty && myForm.lname.$invalid || myForm.dept.$dirty && myForm.dept.$invalid || myForm.email.$dirty && myForm.email.$invalid" ng-click="insertdata()" />
+      </div>
+      </div>
+   </form>
+<script>
+ $scope.getindex=function(){if ($index==='0'){console.log("$index is " .$index;)}}; 
+</script>

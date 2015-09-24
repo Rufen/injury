@@ -1,0 +1,37 @@
+<div class="view">
+  <div class="search">
+    <h2>Search</h2>    
+    <input ng-model="query" placeholder="Search keywords" autofocus>
+
+    <label class="formgroup">by:
+      <select ng-model="injuryOrder">
+        <option value="lname">Name</option>
+        <option value="dept">Department</option>
+      </select>
+    </label>
+
+    <label class="formgroup">
+      <input type="radio" ng-model="direction" name="direction" checked>
+      ascending
+     </label>
+    <label class="formgroup">
+      <input type="radio" ng-model="direction" name="direction" value="reverse">
+      descending
+    </label>
+   
+  </div>
+        <br /><br />
+        <div>
+            <div class="row cardContainer">
+                <div class="span4 card" ng-repeat="item in injuries | filter: query | orderBy: injuryOrder:direction">
+                    <!--<button class="btn close cardClose" data-ng-click="deleteCustomer(item.id)">&times;</button>
+                    <div class="cardHeader">{{customer.firstName + ' ' + customer.lastName}}</div>-->
+                     <div class="cardHeader">{{item.fname }}&nbsp;{{item.lname }}</div>
+                    <div class="cardBody">Dept: {{item.dept}}</div>
+                    <a href="#/details/{{injuries.indexOf(item)}}" class="cardBody btn-link">more</a>
+                    <!--<a href="#/customerorders/{{customer.id}}" class="cardBody btn-link">View {{ customer.orders.length }} Orders</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

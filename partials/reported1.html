@@ -1,0 +1,120 @@
+<h2>Employee Notice of Injury</h2>
+<table>
+<tr><th>Last Name</th><th>First Name</th></tr>
+<td><input ng-model="query.lname" placeholder="Search keywords" autofocus></td>
+<tr ng-repeat="item in injuries |filter:query as results ">
+<td>
+  {{item.lname}}</td>
+ <td> {{item.fname}}- indexof: {{injuries.indexOf(item)}} | index:{{$index}}
+</td>
+</tr>
+<tr><td colspan="2">{{injuries.length}}</td></tr>
+<tr><td colspan="2" ng-repeat="item in injuries |filter:query as results" ng-if="results.length==1"><input placeholder="{{item.lname}}"><input placeholder="{{item.fname}}"></td></tr>
+</table>
+<hr>
+    <form name="injuryForm" ng-controller="SupervisorController">
+      <h4>General Information</h4>
+      <div ng-repeat="item in injuries |filter:query as results" ng-if="results.length==1"><!--general information starts-->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-sm-5">
+              <label for="injuryreport-lname">Last Name</label>
+              <input type="text" ng-model="injuryreport.lname" class="form-control" id="injuryreport-lname" placeholder="{{item.lname}}" required>
+            </div>
+            <div class="col-sm-5">
+              <label for="injuryreport-fname">First Name</label>
+              <input type="text" ng-model="injuryreport.fname" class="form-control" id="injuryreport-fname" placeholder="{{item.fname}}" required>
+            </div>
+            <div class="col-sm-2">
+              <label for="injuryreport-mi">MI</label>
+              <input type="text" ng-model="injuryreport.mi" class="form-control" id="injuryreport-mi" placeholder="{{item.mi}}">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-sm-5">
+              <label for="injuryreport-street">Home Street Address</label>
+              <input type="text" ng-model="injuryreport.street" class="form-control" id="injuryreport-street" placeholder="{{item.street}}">
+            </div>
+            <div class="col-sm-3">
+              <label for="injuryreport-city">City</label>
+              <input type="text" ng-model="injuryreport.city" class="form-control" id="injuryreport-city" placeholder="{{item.city}}">
+            </div>
+            <div class="col-sm-2">
+              <label for="injuryreport-state">State</label>
+              <input type="text" ng-model="injuryreport.state" class="form-control" id="injuryreport-state" placeholder="{{item.state}}">
+            </div>
+            <div class="col-sm-2">
+              <label for="injuryreport-zip">Zip</label>
+              <input type="text" ng-model="injuryreport.zip" class="form-control" id="injuryreport-zip" placeholder="{{item.zip}}">
+            </div>
+          </div>
+        </div>
+      </div><!--first row ends-->
+      <div class="row" style="text-align:left;">
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-hphone">Home Phone</label>
+          <input type="text" ng-model="injuryreport.hphone" class="form-control" id="injuryreport-hphone" placeholder="{{item.hphone}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-cphone">Cell Phone</label>
+          <input type="text" ng-model="injuryreport.cphone" class="form-control" id="injuryreport-cphone" placeholder="{{item.cphone}}">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-email">Email</label>
+         <input type="email" ng-model="injuryreport.email" class="form-control" id="injuryreport-email" placeholder="{{item.email}}">
+        </div>
+      </div><!--Home phone, cell phone, email -->
+      <div class="row" style="text-align:left;">
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-jobtitle">Job Title</label>
+          <input type="text" ng-model="injuryreport.jobtitle" class="form-control" id="injuryreport-jobtitle" placeholder="Children Librarian">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-dept">Department</label>
+          <input type="text" ng-model="injuryreport.dept" class="form-control" id="injuryreport-dept" placeholder="Fire">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-worklocation">Work Location</label>
+          <input type="text" ng-model="injuryreport.worklocation" class="form-control" id="injuryreport-worklocation" placeholder="110 Walnut Street">
+        </div>
+      </div><!--job title, department and work location -->
+      <div class="row" style="text-align:left;">
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-supervisor">Supervisor</label>
+          <input type="text" ng-model="injuryreport.supervisor" class="form-control" id="injuryreport-supervisor" placeholder="Bob Green">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <label for="injuryreport-depthead">Dept. Head</label>
+          <input type="text" ng-model="injuryreport.depthead" class="form-control" id="injuryreport-depthead" placeholder="Jen Brown">
+        </div>
+        <div class="col-sd-6 col-md-4">
+          <div class="row">
+            <div class="col-md-5">
+              <label for="injuryreport-ss">SS#: XXX-XX-</label>
+              <input type="text" ng-model="injuryreport.ss" class="form-control" id="injuryreport-ss" placeholder="0000">
+            </div>
+            <div class="col-md-7">
+              <label for="injuryreport-dob">DOB</label>
+              <div class="col-md-12 input-group">          
+                <input type="text" ng-model="dob" class="form-control" datepicker-popup="{{format}}" is-open="opened_dob" min-date="1945-06-22" max-date="'2020-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open_dob($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span> 
+              </div><!--calendar--> 
+            </div>
+          </div><!--ss# and dob -->
+        </div>
+      </div><!--row of supervisor, dept head, ss, dob -->
+      </div><!-- general information section ends-->
+      <div class="row" style="text-align:left;margin-top:5px;">
+      <div class="col-sm-6">           
+      <input type="submit" value="Submit" ng-disabled="myForm.fname.$dirty && myForm.fname.$invalid || myForm.lname.$dirty && myForm.lname.$invalid || myForm.dept.$dirty && myForm.dept.$invalid || myForm.email.$dirty && myForm.email.$invalid" ng-click="insertdata()" />
+      </div>
+      </div>
+   </form>
+<script>
+ $scope.getindex=function(){if ($index==='0'){console.log("$index is " .$index;)}}; 
+</script>
